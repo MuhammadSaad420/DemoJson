@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.google.gson.Gson
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.DataOutputStream
@@ -129,7 +130,13 @@ class MainActivity : AppCompatActivity() {
 
             Log.i("JSON Response Result", result)
 
-            
+            val responseData = Gson().fromJson(result, ResponseData::class.java)
+            Log.i("Message", responseData.message)
+            Log.i("User Id", "${responseData.user_id}")
+            Log.i("Name", responseData.name)
+            Log.i("Email", responseData.email)
+            Log.i("Mobile", "${responseData.mobile}")
+
             val jsonObject = JSONObject(result)
 
 
